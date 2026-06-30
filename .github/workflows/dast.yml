@@ -1,4 +1,5 @@
 # Goal - To ensure my running application is free from OWASP top 10 security issues
+#Runs after code is deployed to EC2 instance and the application is running on port 8080
 name: OWASP ZAP DAST Scan
 
 on:
