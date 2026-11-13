@@ -1,12 +1,9 @@
-FROM dhi.io/node:26-dev AS build
+FROM node:22-alpine AS build
 
 WORKDIR /app
 
 COPY package*.json ./
-
-RUN npm install --legacy-peer-deps
-
-RUN npm list vite > /dev/null 2>&1 || npm install --no-save vite@5.4.11
+RUN npm ci --legacy-peer-deps
 
 COPY . .
 
@@ -21,7 +18,7 @@ ENV VITE_OTEL_ENABLED=$VITE_OTEL_ENABLED \
 
 RUN npm run build
 
-FROM dhi.io/node:26
+FROM node:22-alpine
 
 WORKDIR /app
 
